@@ -4,6 +4,7 @@
 
 #include <SocketConnection.h>
 
+#include <iostream>
 #include <unistd.h>
 #include <sys/socket.h>
 
@@ -33,6 +34,7 @@ SocketConnection& SocketConnection::receive(ReceiveCallback&& callback)
 {
   char buf[1024] = {};
   recv(_connectionId, buf, 1024, 0);
+  std::clog << "Message is received" << std::endl;
   callback(std::string(buf));
   return *this;
 }
@@ -40,6 +42,7 @@ SocketConnection& SocketConnection::receive(ReceiveCallback&& callback)
 SocketConnection& SocketConnection::send(const std::string& message)
 {
   ::send(_connectionId, message.c_str(), message.length(), 0);
+  std::clog << "Message has been sent" << std::endl;
   return *this;
 }
 

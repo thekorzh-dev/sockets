@@ -31,6 +31,7 @@ ServerUnixSocket::ServerUnixSocket(const std::string& name)
 ServerUnixSocket::~ServerUnixSocket() noexcept
 {
   unlink(_name.c_str());
+  std::clog << "Socket file is unlinked" << std::endl;
 }
 
 ServerUnixSocket::ServerUnixSocket(ServerUnixSocket&& from) noexcept
@@ -42,6 +43,11 @@ ServerUnixSocket& ServerUnixSocket::operator = (ServerUnixSocket&& from) noexcep
 {
   UnixSocket::operator=(std::move(from));
   return *this;
+}
+
+std::string ServerUnixSocket::getName() const
+{
+  return _name;
 }
 
 SocketConnection ServerUnixSocket::accept()

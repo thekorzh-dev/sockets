@@ -19,6 +19,8 @@ public:
     ServerUnixSocket& operator= (const ServerUnixSocket&) = delete;
     ServerUnixSocket& operator= (ServerUnixSocket&& from) noexcept;
 
+    std::string getName() const;
+
     SocketConnection accept();
 
 private:

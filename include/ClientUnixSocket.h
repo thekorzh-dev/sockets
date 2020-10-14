@@ -17,6 +17,7 @@ public:
     ClientUnixSocket (ClientUnixSocket&& from) noexcept;
     ClientUnixSocket& operator= (const ClientUnixSocket&) = delete;
     ClientUnixSocket& operator= (ClientUnixSocket&& from) noexcept;
+
     SocketConnection& getConnection() const;
 
 };
